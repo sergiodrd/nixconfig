@@ -23,6 +23,7 @@
   hardware = {
     opengl.enable = true;
     nvidia.modesetting.enable = true;
+    bluetooth.enable = true;
   };
 
   xdg.portal = {

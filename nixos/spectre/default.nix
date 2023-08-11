@@ -41,6 +41,8 @@
     jack.enable = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Puerto_Rico";
 
