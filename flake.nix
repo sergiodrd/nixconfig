@@ -25,6 +25,14 @@
           ./nixos/legion
         ];
       };
+
+      spectre = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+
+        modules = [
+          ./nixos/spectre
+        ];
+      };
     };
   };
 }
