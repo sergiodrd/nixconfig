@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
   imports =
     [
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   # FLAKES !!!!
@@ -59,19 +60,24 @@
     LC_TIME = "es_PR.UTF-8";
   };
 
+  programs.zsh.enable = true;
   users.users.sergio = {
     isNormalUser = true;
     description = "sergio";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users.sergio = import ./home.nix;
+  };
 
   environment.systemPackages = with pkgs; [
     git
-    eww
+    waybar
     dunst
     libnotify
     swww
