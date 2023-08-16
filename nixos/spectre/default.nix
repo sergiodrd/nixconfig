@@ -6,10 +6,8 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  # FLAKES !!!!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Hyprland
   programs.hyprland.enable = true;
 
   xdg.portal = {
@@ -17,21 +15,17 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # Neovim
   programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = "spectre"; 
 
-  # Sound
   sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -43,13 +37,10 @@
   };
 
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
-  # Set your time zone.
   time.timeZone = "America/Puerto_Rico";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_PR.UTF-8";
     LC_IDENTIFICATION = "es_PR.UTF-8";
@@ -90,15 +81,6 @@
     networkmanagerapplet
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   system.stateVersion = "23.05"; 
