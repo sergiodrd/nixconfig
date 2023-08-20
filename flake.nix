@@ -24,6 +24,7 @@
         specialArgs = { inherit system; };
 
         modules = [
+	  ./nixos/common
           ./nixos/legion
         ];
       };
@@ -32,6 +33,7 @@
         specialArgs = { inherit system inputs; };
 
         modules = [
+	  ./nixos/common
           ./nixos/spectre
         ];
       };
