@@ -18,13 +18,18 @@
         allowUnfree = true;
       };
     };
+
+    nixosModules = import ./nixos/common/config.nix;
+    homeManagerModules = import ./nixos/common/home.nix;
   in {
+    inherit nixosModules homeManagerModules;
+
     nixosConfigurations = {
       legion = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system; };
 
         modules = [
-	  ./nixos/common
+	  nixosModules
           ./nixos/legion
         ];
       };
@@ -33,7 +38,7 @@
         specialArgs = { inherit system inputs; };
 
         modules = [
-	  ./nixos/common
+	  nixosModules
           ./nixos/spectre
         ];
       };

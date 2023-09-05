@@ -17,6 +17,7 @@
     alacritty.enable = true;
     zsh = (import ./zsh.nix { inherit pkgs; });
     tmux = (import ./tmux.nix { inherit pkgs; });
+    neovim = (import ./nvim { inherit pkgs; });
   };
 
   home.file = {
@@ -27,6 +28,11 @@
     ".p10k.zsh" = {
       source = ./.p10k.zsh;
       target = ".config/zsh/.p10k.zsh";
+    };
+    "nvim" = {
+      recursive = true;
+      source = ./nvim/lua;
+      target = ".config/nvim/lua";
     };
   };
 
