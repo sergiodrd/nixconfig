@@ -22,17 +22,26 @@
 
   home.file = {
     "alacritty.yml" = {
-      source = ./alacritty.yml;
+      source = config.lib.file.mkOutOfStoreSymlink 
+        /home/sergio/nixconfig/nixos/spectre/alacritty.yml;
       target = ".config/alacritty/alacritty.yml";
     };
     ".p10k.zsh" = {
-      source = ./.p10k.zsh;
+      source = config.lib.file.mkOutOfStoreSymlink 
+        /home/sergio/nixconfig/nixos/spectre/.p10k.zsh;
       target = ".config/zsh/.p10k.zsh";
     };
     "nvim" = {
       recursive = true;
-      source = ./nvim/lua;
+      source = config.lib.file.mkOutOfStoreSymlink 
+        /home/sergio/nixconfig/nixos/spectre/nvim/lua;
       target = ".config/nvim/lua";
+    };
+    "hypr" = {
+      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink 
+        /home/sergio/nixconfig/nixos/spectre/hyprland;
+      target = ".config/hypr";
     };
   };
 
