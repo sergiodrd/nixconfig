@@ -16,7 +16,7 @@
   '';
 
   shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake /home/sergio/nixconfig#spectre";
+    rebuild = "sudo nixos-rebuild switch --flake /home/sergio/nixconfig#spectre --show-trace";
   };
 
   plugins = [

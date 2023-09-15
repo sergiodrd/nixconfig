@@ -63,6 +63,7 @@
     alacritty
     rofi-wayland
     firefox
+    qutebrowser
     xfce.thunar
     networkmanagerapplet
   ];
