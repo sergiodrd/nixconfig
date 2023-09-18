@@ -66,6 +66,8 @@
     qutebrowser
     xfce.thunar
     networkmanagerapplet
+    libgccjit
+    nodejs_20
   ];
 
   services.openssh.enable = true;
