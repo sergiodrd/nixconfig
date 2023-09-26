@@ -10,14 +10,6 @@
   outputs = { self, nixpkgs, ... } @ inputs: 
   let
     system = "x86_64-linux";
-  
-    pkgs = import nixpkgs {
-      inherit system;
-
-      config = {
-        allowUnfree = true;
-      };
-    };
 
     nixosModules = import ./nixos/common/config.nix;
     homeManagerModules = import ./nixos/common/home.nix;
@@ -29,7 +21,7 @@
         specialArgs = { inherit system; };
 
         modules = [
-	  nixosModules
+          nixosModules
           ./nixos/legion
         ];
       };
@@ -38,7 +30,7 @@
         specialArgs = { inherit system inputs; };
 
         modules = [
-	  nixosModules
+          nixosModules
           ./nixos/spectre
         ];
       };

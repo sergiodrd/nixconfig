@@ -15,9 +15,13 @@
       userName = "sergio";
       userEmail = "sergiod.roddj@gmail.com";
     };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     alacritty.enable = true;
     zsh = (import ./zsh.nix { inherit pkgs; });
-    tmux = (import ./tmux.nix { inherit pkgs; });
+    tmux = (import ./tmux.nix { inherit pkgs inputs; });
     neovim = (import ./nvim { inherit pkgs; });
     waybar = (import ./waybar { inherit pkgs; });
   };

@@ -1,18 +1,16 @@
-opts = {}
-require("indent_blankline").setup({
-	use_treesitter = true,
-	show_current_context = true,
-	context_patterns = {
-		"class",
-		"function",
-		"method",
-		"for_statement",
-		"try_statement",
-		"except_clause",
-		"finally_clause",
-		"while_statement",
-		"if_statement",
-		"with_statement",
-	},
-	require("indent-rainbowline").make_opts(opts)
-})
+vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineIndent1 guibg=#232136 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guibg=#2a283e gui=nocombine]]
+
+require("indent_blankline").setup {
+    char = "",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+    },
+    space_char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+    },
+    show_trailing_blankline_indent = false,
+}

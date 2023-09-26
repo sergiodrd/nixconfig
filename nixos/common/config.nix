@@ -68,6 +68,8 @@
     networkmanagerapplet
     libgccjit
     nodejs_20
+    tmux
+    brightnessctl
   ];
 
   services.openssh.enable = true;

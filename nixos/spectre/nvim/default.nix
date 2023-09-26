@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   enable = true;
+  viAlias = true;
+  vimAlias = true;
+  vimdiffAlias = true;
+  withNodeJs = true;
+  withPython3 = true;
   defaultEditor = true;
   extraLuaConfig = ''
     require("config.general")
@@ -28,13 +33,30 @@
       type = "lua";
       config = ''
         require("rose-pine").setup({
-          variant = 'main',
+          variant = 'moon',
         })
         vim.cmd('colorscheme rose-pine')
       '';
     }
+    {
+      plugin = nightfly;
+      type = "lua";
+      config = ''
+        require("nightfly")
+      '';
+    }
     vim-sleuth
-    lualine-nvim
+    {
+      plugin = lualine-nvim;
+      type = "lua";
+      config = ''
+        require("lualine").setup({
+          options = {
+            theme = require("lualine.themes.rose-pine")
+          }
+        })
+      '';
+    }
     {
       plugin = indent-blankline-nvim;
       type = "lua";
@@ -42,7 +64,6 @@
         require("config.blankline")
       '';
     }
-    (import ./indent-rainbowline.nix { inherit pkgs; })
     {
       plugin = nvim-colorizer-lua;
       type = "lua";
@@ -114,13 +135,14 @@
     }
     telescope-fzy-native-nvim
     telescope-file-browser-nvim
+    dressing-nvim
 
     # misc
     {
       plugin = which-key-nvim;
       type = "lua";
       config = ''
-	vim.opt.timeoutlen = 300
+	vim.opt.timeoutlen = 1000
 	require("which-key").setup({})
       '';
     }
@@ -128,12 +150,42 @@
       plugin = comment-nvim;
       type = "lua";
       config = ''
-        require("config.comment")
+        require("Comment").setup()
       '';
     }
     neodev-nvim
   ];
   extraPackages = with pkgs; [
+    # python
+    (python3.withPackages (ps: with ps; [
+      setuptools
+      pylama
+      black
+      isort
+      debugpy
+    ]))
+    nodePackages.pyright
+
+    # lua
+    lua-language-server
+    selene
+    stylua
+
+    # nix
+    statix
+    nixpkgs-fmt
+    nil
+
+    # c, c++
+    clang-tools
+    cppcheck
+
+    # shell scripting
+    shfmt
+    shellcheck
+    shellharden
+
+    # telescope dependencies
     ripgrep
     fd
   ];
