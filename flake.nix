@@ -11,8 +11,8 @@
   let
     system = "x86_64-linux";
 
-    nixosModules = import ./nixos/common/config.nix;
-    homeManagerModules = import ./nixos/common/home.nix;
+    nixosModules = import ./modules/config.nix;
+    homeManagerModules = import ./modules/home.nix;
   in {
     inherit nixosModules homeManagerModules;
 
