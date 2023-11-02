@@ -6,7 +6,10 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   networking.hostName = "spectre"; 
 
   home-manager = {

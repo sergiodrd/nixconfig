@@ -137,6 +137,15 @@
     telescope-file-browser-nvim
     dressing-nvim
 
+    # harpoon
+    {
+      plugin = harpoon;
+      type = "lua";
+      config = ''
+        require("config.harpoon")
+      '';
+    }
+
     # misc
     {
       plugin = which-key-nvim;
@@ -154,6 +163,15 @@
       '';
     }
     neodev-nvim
+
+    # latex
+    # {
+    #   plugin = vimtex;
+    #   type = "lua";
+    #   config = ''
+    #     require("config.latex")
+    #   '';
+    # }
   ];
   extraPackages = with pkgs; [
     # python
@@ -176,6 +194,10 @@
     nixpkgs-fmt
     nil
 
+    # rust
+    rust-analyzer
+    bacon
+
     # c, c++
     clang-tools
     cppcheck
@@ -184,6 +206,9 @@
     shfmt
     shellcheck
     shellharden
+
+    # latex
+    texlab
 
     # telescope dependencies
     ripgrep

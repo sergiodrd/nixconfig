@@ -24,6 +24,7 @@
     tmux = (import ./tmux.nix { inherit pkgs inputs; });
     neovim = (import ./nvim { inherit pkgs; });
     waybar = (import ./waybar { inherit pkgs; });
+    texlive.enable = true;
   };
 
   home.file = {
