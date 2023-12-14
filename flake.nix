@@ -9,29 +9,31 @@
 
   outputs = { self, nixpkgs, ... } @ inputs: 
   let
-    system = "x86_64-linux";
+    inherit (self) outputs;
 
-    nixosModules = import ./modules/config.nix;
-    homeManagerModules = import ./modules/home.nix;
-  in {
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+
+    specialArgs = { inherit inputs outputs; };
+  in rec {
     inherit nixosModules homeManagerModules;
 
-    nixosConfigurations = {
+    nixosConfigurations = 
+    let
+      defaultModules = builtins.attrValues nixosModules;
+    in
+    {
       legion = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit system; };
-
-        modules = [
-          nixosModules
-          ./nixos/legion
+        inherit specialArgs;
+        modules = defaultModules ++ [
+          ./hosts/legion
         ];
       };
 
       spectre = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit system inputs; };
-
-        modules = [
-          nixosModules
-          ./nixos/spectre
+        inherit specialArgs;
+        modules = defaultModules ++ [
+          ./hosts/spectre
         ];
       };
     };
