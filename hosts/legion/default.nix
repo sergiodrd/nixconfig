@@ -17,6 +17,8 @@
       enable = true;
       home = ./home.nix;
     };
+
+    tailscale.enable = true;
   };
 
   system.stateVersion = "23.05"; 

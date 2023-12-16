@@ -16,6 +16,13 @@
       enable = true;
       home = ./home.nix;
     };
+
+    docker = {
+      enable = true;
+      rootless = false;
+    };
+
+    tailscale.enable = true;
   };
 
   system.stateVersion = "23.05"; 

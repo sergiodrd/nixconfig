@@ -11,7 +11,9 @@ in
     };
   };
 
-  config = lib.mkIf cfg.useSharedConfig {
+  config = lib.mkIf cfg.enable {
+    # wayland.windowManager.hyprland.enable = true;
+
     home.file = {
       "hyprland.conf" = {
         source = config.lib.file.mkOutOfStoreSymlink 

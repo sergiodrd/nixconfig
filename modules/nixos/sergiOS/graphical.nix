@@ -8,6 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.hyprland.enable = true;
     services.blueman.enable = true;
 
     environment.systemPackages = with pkgs; [

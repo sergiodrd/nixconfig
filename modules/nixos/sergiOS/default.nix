@@ -5,6 +5,8 @@
     ./nvidia.nix
     ./user.nix
     ./graphical.nix
+    ./docker.nix
+    ./tailscale.nix
   ];
 
   options.sergiOS = with lib; {
