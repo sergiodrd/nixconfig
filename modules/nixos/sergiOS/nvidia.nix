@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.hyprland = lib.mkIf config.sergiOS.graphical {
+    programs.hyprland = lib.mkIf config.sergiOS.graphical.enable {
       nvidiaPatches = true;
       xwayland.enable = true;
     };
