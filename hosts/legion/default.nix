@@ -8,6 +8,8 @@
 
   sergiOS = {
     enable = true;
+    hostname = "legion";
+
     base.enable = true;
     graphical.enable = true;
     nvidia.enable = true;
@@ -16,8 +18,6 @@
       home = ./home.nix;
     };
   };
-
-  networking.hostName = "legion"; 
 
   system.stateVersion = "23.05"; 
 }

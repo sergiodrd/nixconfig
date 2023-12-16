@@ -8,6 +8,8 @@
 
   sergiOS = {
     enable = true;
+    hostname = "spectre";
+
     base.enable = true;
     graphical.enable = true;
     home-manager = {
@@ -15,17 +17,6 @@
       home = ./home.nix;
     };
   };
-
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-  networking.hostName = "spectre"; 
-
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users.sergio = import ./home.nix;
-  # };
 
   system.stateVersion = "23.05"; 
 }

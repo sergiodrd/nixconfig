@@ -9,5 +9,8 @@
 
   options.sergiOS = with lib; {
     enable = mkEnableOption "sergiOS";
+    hostname = mkOption {
+      type = types.str;
+    };
   };
 }

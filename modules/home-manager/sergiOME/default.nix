@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   imports = [
     ./hyprland
@@ -10,5 +11,17 @@
     ./tmux.nix
     ./swappy.nix
   ];
-  programs.home-manager.enable = true;
+
+  options.sergiOME = with lib; rec {
+    username = mkOption {
+      type = types.str;
+      default = "sergio";
+    };
+    # homeDirectory = mkOption {
+    #   type = types.str;
+    #   default = "/home/${username}";
+    # };
+  };
+
+  config.programs.home-manager.enable = true;
 }

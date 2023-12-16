@@ -1,17 +1,13 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.sergiOS.base;
+  cfg = config.sergiOS;
 in
 {
   options.sergiOS.base = with lib; {
     enable = mkEnableOption "base";
-    graphical = mkOption {
-      type = lib.types.bool;
-      default = true;
-    };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.base.enable {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nixpkgs.config.allowUnfree = true;
 
@@ -19,6 +15,7 @@ in
     boot.loader.efi.canTouchEfiVariables = true;
 
     networking.networkmanager.enable = true;
+    networking.hostName = cfg.hostname;
 
     hardware.bluetooth.enable = true;
 
