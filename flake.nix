@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, nixpkgs, ... } @ inputs: 
@@ -34,6 +35,14 @@
         inherit specialArgs;
         modules = defaultModules ++ [
           ./hosts/spectre
+        ];
+      };
+
+      pi = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = defaultModules ++ [
+          ./hosts/pi
+          inputs.nixos-hardware.raspberry-pi-4
         ];
       };
     };
