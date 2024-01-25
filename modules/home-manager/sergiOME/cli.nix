@@ -41,6 +41,7 @@ in
       eza
       neofetch
       nix-tree
+      postman
     ];
   };
 }
