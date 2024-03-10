@@ -32,6 +32,10 @@ in
       jq = {
         enable = true;
       };
+      zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
 
     home.packages = with pkgs; [
@@ -41,7 +45,9 @@ in
       eza
       neofetch
       nix-tree
-      postman
+      (writeShellScriptBin "definitely_unique" ''
+        ${cowsay}/bin/cowsay hello
+      '')
     ];
   };
 }

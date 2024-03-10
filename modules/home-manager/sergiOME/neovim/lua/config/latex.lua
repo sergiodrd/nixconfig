@@ -1,1 +1,0 @@
-local vimtex = require("vimtex")

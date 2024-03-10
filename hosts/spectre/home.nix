@@ -14,6 +14,7 @@
       enable = true;
       personalGit.enable = true;
     };
+    zathura.enable = true;
 
     neovim.enable = true;
 

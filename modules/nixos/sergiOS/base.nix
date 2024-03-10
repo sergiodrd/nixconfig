@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.sergiOS;
 in
@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.base.enable {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     nixpkgs.config.allowUnfree = true;
 
     boot.loader.systemd-boot.enable = true;
@@ -32,6 +33,12 @@ in
       LC_TELEPHONE = "es_PR.UTF-8";
       LC_TIME = "es_PR.UTF-8";
     };
+
+    programs.nix-ld.enable = true;
+    # programs.nix-ld.libraries = with pkgs; [
+    #   # Add any missing dynamic libraries for unpackaged programs
+    #   # here, NOT in environment.systemPackages
+    # ];
 
     environment.systemPackages = with pkgs; [
       git

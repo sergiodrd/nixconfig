@@ -10,6 +10,7 @@
     ./zsh.nix
     ./tmux.nix
     ./swappy.nix
+    ./zathura.nix
   ];
 
   options.sergiOME = with lib; rec {
