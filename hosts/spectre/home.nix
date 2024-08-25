@@ -8,8 +8,6 @@
     swappy.enable = true;
     tofi.enable = true;
 
-    virtualbox.enable = true;
-
     alacritty.enable = true;
     zsh.enable = true;
     tmux.enable = true;

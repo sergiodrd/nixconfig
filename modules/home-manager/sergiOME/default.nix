@@ -16,7 +16,6 @@
     ./ollama.nix
     ./obsidian.nix
     ./tofi.nix
-    ./virtualbox.nix
   ];
 
   options.sergiOME = with lib; rec {

@@ -21,6 +21,7 @@
       enable = true;
       rootless = false;
     };
+    virtualbox.enable = true;
 
     tailscale.enable = true;
   };

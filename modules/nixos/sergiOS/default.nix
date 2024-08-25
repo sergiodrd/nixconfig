@@ -7,6 +7,7 @@
     ./graphical.nix
     ./docker.nix
     ./tailscale.nix
+    ./virtualbox.nix
   ];
 
   options.sergiOS = with lib; {
