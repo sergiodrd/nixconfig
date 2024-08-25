@@ -2,17 +2,18 @@
   description = "My NixOS config :)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixos-nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixvim = {
       url = "github:nix-community/nixvim/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixos-nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs: 
+  outputs = { self, nixos-nixpkgs, ... } @ inputs: 
   let
     inherit (self) outputs;
 
@@ -28,21 +29,21 @@
       defaultModules = builtins.attrValues nixosModules;
     in
     {
-      legion = nixpkgs.lib.nixosSystem {
+      legion = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = defaultModules ++ [
           ./hosts/legion
         ];
       };
 
-      spectre = nixpkgs.lib.nixosSystem {
+      spectre = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = defaultModules ++ [
           ./hosts/spectre
         ];
       };
 
-      pi = nixpkgs.lib.nixosSystem {
+      pi = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = defaultModules ++ [
           ./hosts/pi

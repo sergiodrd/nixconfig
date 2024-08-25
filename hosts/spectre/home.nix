@@ -6,6 +6,9 @@
     hyprland.enable = true;
     waybar.enable = true;
     swappy.enable = true;
+    tofi.enable = true;
+
+    virtualbox.enable = true;
 
     alacritty.enable = true;
     zsh.enable = true;
@@ -14,14 +17,18 @@
       enable = true;
       personalGit.enable = true;
     };
+    programming.enable = true;
+    ollama.enable = true;
+
+    obsidian.enable = true;
     zathura.enable = true;
 
     neovim.enable = true;
+    emacs.enable = true;
 
     browsing = {
       enable = true;
       firefox.enable = true;
-      qutebrowser.enable = true;
     };
   };
 }

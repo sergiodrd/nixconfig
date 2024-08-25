@@ -20,7 +20,7 @@ in
       };
       zsh = {
         enable = true;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         enableCompletion = true;
         autocd = true;
         dotDir = ".config/zsh";
@@ -28,9 +28,9 @@ in
         syntaxHighlighting.enable = true;
         shellAliases = {
           rebuild = "sudo nixos-rebuild switch --flake /home/${cfg.username}/nixconfig#${hostname} --show-trace";
+          bump = "pushd ~/nixconfig/ && nix flake lock --update-input nixpkgs-unstable && rebuild && popd";
           ls = "eza";
-          ll = "eza -l";
-          l = "eza -ll";
+          l = "eza -la";
         };
       };
     };

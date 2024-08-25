@@ -74,7 +74,9 @@ vim.opt.hlsearch = true
 
 -- Keymaps
 vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<C-c>", '<cmd>nohlsearch<CR>')
+
+vim.keymap.set("n", "<leader>E", ":Explore<CR>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -193,7 +195,7 @@ require('lazy').setup({
     opts = {},
     config = function()
       local harpoon = require('harpoon')
-      vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
+      vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
       vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
       vim.keymap.set("n", "<leader>j", function() harpoon:list():select(1) end)
@@ -301,6 +303,13 @@ require('lazy').setup({
       lspconfig.lua_ls.setup({})
       lspconfig.gopls.setup({})
       lspconfig.rust_analyzer.setup({})
+      lspconfig.gleam.setup({})
+      lspconfig.clangd.setup({
+        cmd = { "clangd", "--compile-commands-dir=build", "--log=verbose" }
+      })
+      lspconfig.omnisharp.setup({
+        cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) }
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -506,7 +515,7 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'go', 'python', 'rust' },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'go', 'python', 'rust', 'gleam' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },

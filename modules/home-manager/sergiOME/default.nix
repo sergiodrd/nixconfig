@@ -11,6 +11,12 @@
     ./tmux.nix
     ./swappy.nix
     ./zathura.nix
+    ./emacs.nix
+    ./programming.nix
+    ./ollama.nix
+    ./obsidian.nix
+    ./tofi.nix
+    ./virtualbox.nix
   ];
 
   options.sergiOME = with lib; rec {

@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.base.enable {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nix.nixPath = [ "nixpkgs=${inputs.nixos-nixpkgs}" ];
     nixpkgs.config.allowUnfree = true;
 
     boot.loader.systemd-boot.enable = true;
@@ -17,6 +17,8 @@ in
 
     networking.networkmanager.enable = true;
     networking.hostName = cfg.hostname;
+
+    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
     hardware.bluetooth.enable = true;
 
@@ -50,6 +52,8 @@ in
       pciutils
       file
       lf
+      intel-ocl
+      inotify-tools
     ];
   };
 }

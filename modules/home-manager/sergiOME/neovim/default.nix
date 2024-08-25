@@ -23,8 +23,10 @@ in
         # language servers
         lua-language-server
         gopls
-        nodePackages.pyright isort black
+        basedpyright isort black
         rust-analyzer
+        omnisharp-roslyn mono msbuild
+        libclang
       ];
     };
 
