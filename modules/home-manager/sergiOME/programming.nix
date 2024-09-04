@@ -13,7 +13,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       unst.gleam
-      erlang
+      erlang_27
       rebar3
       inotify-tools
       fly

@@ -134,6 +134,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 require('lazy').setup({
+  'sergiodrd/better.nvim',
+
   -- For neovim stuff
   {
     "folke/neodev.nvim",

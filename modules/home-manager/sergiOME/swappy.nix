@@ -7,9 +7,11 @@ in
     enable = mkEnableOption "swappy";
   };
 
-  config.home.file.".config/swappy/config".text = lib.mkIf cfg.enable ''
-    [Default]
-    save_dir=$HOME/screenshots
-    early_exit=true
-  '';
+  config = lib.mkIf cfg.enable {
+    home.file.".config/swappy/config".text =''
+      [Default]
+      save_dir=$HOME/screenshots
+      early_exit=true
+    '';
+  };
 }

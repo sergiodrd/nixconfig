@@ -8,6 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.virtualbox.enable {
+    environment.systemPackages = [ pkgs.qemu ];
     virtualisation.virtualbox.host.enable = true;
     users.extraGroups.vboxusers.members = [ cfg.user ];
   };

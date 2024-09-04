@@ -31,6 +31,7 @@ in
           bump = "pushd ~/nixconfig/ && nix flake lock --update-input nixpkgs-unstable && rebuild && popd";
           ls = "eza";
           l = "eza -la";
+          zoob = "VBoxManage startvm humbert_machine --type headless";
         };
       };
     };
