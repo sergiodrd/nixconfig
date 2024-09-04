@@ -50,6 +50,13 @@
           inputs.nixos-hardware.raspberry-pi-4
         ];
       };
+
+      thinkpad = nixos-nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = defaultModules ++ [
+          ./hosts/thinkpad
+        ];
+      };
     };
   };
 }
