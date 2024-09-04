@@ -21,6 +21,7 @@ in
         ripgrep
 
         # language servers
+        nixd
         lua-language-server
         gopls
         basedpyright isort black
