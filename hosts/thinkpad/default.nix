@@ -10,7 +10,10 @@
     enable = true;
     hostname = "thinkpad";
 
-    base.enable = true;
+    base = {
+      enable = true;
+      uefi = false;
+    };
     home-manager = {
       enable = true;
       home = ./home.nix;

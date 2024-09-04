@@ -29,7 +29,7 @@ in
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     xdg.mime.defaultApplications = {
@@ -40,7 +40,6 @@ in
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
 
-    sound.enable = true;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

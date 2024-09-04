@@ -5,6 +5,7 @@ in
 {
   options.sergiOS.base = with lib; {
     enable = mkEnableOption "base";
+    uefi = mkDefault true;
   };
 
   config = lib.mkIf cfg.base.enable {
@@ -12,8 +13,8 @@ in
     nix.nixPath = [ "nixpkgs=${inputs.nixos-nixpkgs}" ];
     nixpkgs.config.allowUnfree = true;
 
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.systemd-boot.enable = cfg.base.uefi;
+    boot.loader.efi.canTouchEfiVariables = cfg.base.uefi;
 
     networking.networkmanager.enable = true;
     networking.hostName = cfg.hostname;
