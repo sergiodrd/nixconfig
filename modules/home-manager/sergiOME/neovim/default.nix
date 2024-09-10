@@ -28,6 +28,7 @@ in
         rust-analyzer
         omnisharp-roslyn mono msbuild
         libclang
+        typst-lsp
       ];
     };
 

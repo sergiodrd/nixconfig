@@ -5,7 +5,10 @@ in
 {
   options.sergiOS.base = with lib; {
     enable = mkEnableOption "base";
-    uefi = mkDefault true;
+    uefi = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.base.enable {

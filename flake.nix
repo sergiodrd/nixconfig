@@ -4,9 +4,17 @@
   inputs = {
     nixos-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixos-nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixos-nixpkgs";
+
+    stylix.url = "github:danth/stylix";
+    stylix.c
   };
 
   outputs = { self, nixos-nixpkgs, ... } @ inputs: 

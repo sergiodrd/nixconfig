@@ -301,6 +301,7 @@ require('lazy').setup({
     },
     config = function()
       local lspconfig = require('lspconfig')
+      lspconfig.typst_lsp.setup({})
       lspconfig.nixd.setup({})
       lspconfig.pyright.setup({})
       lspconfig.lua_ls.setup({})

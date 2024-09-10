@@ -11,7 +11,10 @@
     hostname = "spectre";
 
     base.enable = true;
-    graphical.enable = true;
+    graphical = {
+      enable = true;
+      niri = true;
+    };
     home-manager = {
       enable = true;
       home = ./home.nix;

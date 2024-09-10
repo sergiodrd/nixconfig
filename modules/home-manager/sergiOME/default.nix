@@ -16,6 +16,8 @@
     ./ollama.nix
     ./obsidian.nix
     ./tofi.nix
+    ./niri.nix
+    ./typst.nix
   ];
 
   options.sergiOME = with lib; rec {

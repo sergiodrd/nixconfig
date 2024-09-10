@@ -1,14 +1,27 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.sergiOS.graphical;
 in
 {
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
   options.sergiOS.graphical = with lib; {
     enable = mkEnableOption "graphical";
+    niri = mkOption {
+      type = types.bool;
+      default = false;
+    };
+    hyprland = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    programs.hyprland.enable = true;
+    programs.niri.enable = cfg.niri;
+    programs.hyprland.enable = cfg.hyprland;
     services.blueman.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -29,7 +42,7 @@ in
 
     xdg.portal = {
       enable = true;
-      # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     xdg.mime.defaultApplications = {
