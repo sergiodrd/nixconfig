@@ -11,6 +11,7 @@
     hostname = "spectre";
 
     base.enable = true;
+    stylix.enable = true;
     graphical = {
       enable = true;
       niri = true;

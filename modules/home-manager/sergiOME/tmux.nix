@@ -31,24 +31,27 @@ in
       bind -n M-7 select-window -t 7
       bind -n M-8 select-window -t 8
       bind -n M-9 select-window -t 9
-      
+
     '';
-    plugins = with pkgs; [
+    plugins = with pkgs.tmuxPlugins; [
       {
-        plugin = tmuxPlugins.resurrect;
+        plugin = resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
       {
-        plugin = tmuxPlugins.continuum;
+        plugin = continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-boot 'on'
         '';
       }
       {
-        plugin = tmuxPlugins.catppuccin;
+        plugin = catppuccin;
         extraConfig = "set -g @catppuccin_flavour 'frappe'";
       }
+      # {
+      #   plugin = vim-tmux-navigator;
+      # }
     ];
   };
 }

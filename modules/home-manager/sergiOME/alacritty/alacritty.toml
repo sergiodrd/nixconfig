@@ -1,3 +1,10 @@
+# for vim tmux navigator, we rebind clear
+[keyboard]
+bindings = [
+  # { key = "l", mode = "AppKeypad", mods = "Control", action = "None" },
+  # { key = "Semicolon", mods = "Control", action = "ClearHistory" },
+]
+
 [colors.bright]
 black = "0x444b6a"
 red = "0xff7a93"

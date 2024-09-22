@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.alacritty.enable = true;
+    programs.wezterm.enable = true;
     home.file."alacritty.yml" = {
       source = config.lib.file.mkOutOfStoreSymlink
       /home/sergio/nixconfig/modules/home-manager/sergiOME/alacritty/alacritty.toml;

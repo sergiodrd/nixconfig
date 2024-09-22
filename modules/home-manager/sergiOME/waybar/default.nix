@@ -12,8 +12,8 @@ in
     settings = {
       bar = {
         layer = "top";
-        modules-left = ["custom/launcher" "cpu" "memory" /* "custom/media" */ "tray"];
-        modules-center = ["hyprland/workspaces"];
+        modules-left = ["custom/launcher" "cpu" "memory" "tray"];
+        modules-center = ["niri/workspaces"];
         modules-right = ["backlight" "pulseaudio" "clock" "battery" "custom/power"];
 
         "pulseaudio" = {

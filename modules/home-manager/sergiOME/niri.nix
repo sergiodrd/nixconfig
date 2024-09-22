@@ -8,12 +8,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.fuzzel.enable = true;
+    programs.swaylock.enable = true;
+
+    services.mako.enable = true;
+
     programs.niri.settings = {
       input = {
         keyboard.xkb = {
-          # TODO: add international layout
-          layout = "us,";
-          options = "";
+          layout = "us,us";
+          variant = ",intl";
+          options = "grp:ctrl_space_toggle";
         };
 
         touchpad.dwt = true;
@@ -29,6 +34,11 @@ in
         }
       ];
 
+      spawn-at-startup = [
+        {command = ["waybar"];}
+        {command = ["mako"];}
+      ];
+
       binds = with config.lib.niri.actions; {
         # help
         "Mod+Shift+Slash".action = show-hotkey-overlay;
@@ -39,9 +49,11 @@ in
 
         # audio keys
         "XF86AudioRaiseVolume".action =
-          spawn "sh" "-c" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+          spawn "sh" "-c" "wpctl" "set-volume" "-l" "1.4" "@DEFAULT_AUDIO_SINK@"
+          "0.1+";
         "XF86AudioLowerVolume".action =
-          spawn "sh" "-c" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+          spawn "sh" "-c" "wpctl" "set-volume" "-l" "1.4" "@DEFAULT_AUDIO_SINK@"
+          "0.1-";
         "XF86AudioMute".action =
           spawn "sh" "-c" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
         "XF86AudioMicMute".action =
@@ -51,6 +63,7 @@ in
         "Mod+Return".action = spawn "alacritty";
         "Mod+Space".action = spawn "fuzzel";
         "Mod+Alt+L".action = spawn "swaylock";
+        "Mod+W".action = spawn "firefox";
 
         # screenshot
         "Mod+Shift+S".action = screenshot;

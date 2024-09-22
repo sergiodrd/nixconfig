@@ -14,7 +14,7 @@
     niri.inputs.nixpkgs.follows = "nixos-nixpkgs";
 
     stylix.url = "github:danth/stylix";
-    stylix.c
+    stylix.inputs.nixpkgs.follows = "nixos-nixpkgs";
   };
 
   outputs = { self, nixos-nixpkgs, ... } @ inputs: 

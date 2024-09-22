@@ -134,7 +134,27 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 require('lazy').setup({
+  -- lol
   'sergiodrd/better.nvim',
+
+  -- tmux
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
 
   -- For neovim stuff
   {
@@ -303,7 +323,7 @@ require('lazy').setup({
       local lspconfig = require('lspconfig')
       lspconfig.typst_lsp.setup({})
       lspconfig.nixd.setup({})
-      lspconfig.pyright.setup({})
+      lspconfig.basedpyright.setup({})
       lspconfig.lua_ls.setup({})
       lspconfig.gopls.setup({})
       lspconfig.rust_analyzer.setup({})
