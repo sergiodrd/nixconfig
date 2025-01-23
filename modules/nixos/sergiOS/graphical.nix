@@ -1,8 +1,12 @@
-{ config, lib, pkgs, inputs, ... }:
-let
-  cfg = config.sergiOS.graphical;
-in
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  cfg = config.sergiOS.graphical;
+in {
   imports = [
     inputs.niri.nixosModules.niri
   ];
@@ -28,9 +32,11 @@ in
       libnotify
       networkmanagerapplet
       brightnessctl
-      cliphist
+      clipse
       wl-clipboard
-      grim slurp swappy
+      grim
+      slurp
+      swappy
       xdg-utils
     ];
 

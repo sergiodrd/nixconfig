@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.obsidian;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.obsidian;
+in {
   options.sergiOME.obsidian = with lib; {
     enable = mkEnableOption "obsidian";
   };

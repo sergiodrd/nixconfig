@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.sergiOME.niri;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.sergiOME.niri;
+in {
   options.sergiOME.niri = with lib; {
     enable = mkEnableOption "niri";
   };

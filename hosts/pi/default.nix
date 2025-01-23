@@ -1,10 +1,8 @@
-{ inputs, ... }:
-{
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-    ];
+{inputs, ...}: {
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   sergiOS = {
     enable = true;
@@ -25,5 +23,5 @@
     tailscale.enable = true;
   };
 
-  system.stateVersion = "23.05"; 
+  system.stateVersion = "23.05";
 }

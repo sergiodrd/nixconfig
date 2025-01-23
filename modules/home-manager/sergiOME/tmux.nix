@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.tmux;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.tmux;
+in {
   options.sergiOME.tmux = with lib; {
     enable = mkEnableOption "tmux";
   };
@@ -15,13 +18,13 @@ in
     prefix = "C-a";
     terminal = "tmux-256color";
     extraConfig = ''
-      set-option -ga terminal-overrides ",xterm-256color:Tc"
+      set-option -a terminal-features 'alacritty:RGB'
 
       bind -n M-Left select-pane -L
       bind -n M-Right select-pane -R
       bind -n M-Up select-pane -U
       bind -n M-Down select-pane -D
-      
+
       bind -n M-1 select-window -t 1
       bind -n M-2 select-window -t 2
       bind -n M-3 select-window -t 3
@@ -44,10 +47,6 @@ in
           set -g @continuum-restore 'on'
           set -g @continuum-boot 'on'
         '';
-      }
-      {
-        plugin = catppuccin;
-        extraConfig = "set -g @catppuccin_flavour 'frappe'";
       }
       # {
       #   plugin = vim-tmux-navigator;

@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.sergiOS.nvidia;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.sergiOS.nvidia;
+in {
   options.sergiOS.nvidia = with lib; {
     enable = mkEnableOption "nvidia";
   };

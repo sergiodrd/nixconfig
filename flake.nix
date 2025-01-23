@@ -15,51 +15,63 @@
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixos-nixpkgs";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixos-nixpkgs";
   };
 
-  outputs = { self, nixos-nixpkgs, ... } @ inputs: 
-  let
+  outputs = {
+    self,
+    nixos-nixpkgs,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
 
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
 
-    specialArgs = { inherit inputs outputs; };
+    specialArgs = {inherit inputs outputs;};
   in rec {
     inherit nixosModules homeManagerModules;
 
-    nixosConfigurations = 
-    let
+    nixosConfigurations = let
       defaultModules = builtins.attrValues nixosModules;
-    in
-    {
+    in {
       legion = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = defaultModules ++ [
-          ./hosts/legion
-        ];
+        modules =
+          defaultModules
+          ++ [
+            ./hosts/legion
+          ];
       };
 
       spectre = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = defaultModules ++ [
-          ./hosts/spectre
-        ];
+        modules =
+          defaultModules
+          ++ [
+            ./hosts/spectre
+          ];
       };
 
       pi = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = defaultModules ++ [
-          ./hosts/pi
-          inputs.nixos-hardware.raspberry-pi-4
-        ];
+        modules =
+          defaultModules
+          ++ [
+            ./hosts/pi
+            inputs.nixos-hardware.raspberry-pi-4
+          ];
       };
 
       thinkpad = nixos-nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = defaultModules ++ [
-          ./hosts/thinkpad
-        ];
+        modules =
+          defaultModules
+          ++ [
+            ./hosts/thinkpad
+          ];
       };
     };
   };

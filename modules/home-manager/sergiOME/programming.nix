@@ -1,11 +1,15 @@
-{ config, lib, pkgs, inputs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   cfg = config.sergiOME.programming;
   unst = import inputs.nixpkgs-unstable {
     system = "x86_64-linux";
   };
-in
-{
+in {
   options.sergiOME.programming = with lib; {
     enable = mkEnableOption "programming";
   };
@@ -21,6 +25,7 @@ in
       nodejs
       deno
       hyprland
+      aoc-cli
     ];
   };
 }

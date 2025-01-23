@@ -1,8 +1,11 @@
-{ config, lib, ... }:
-let
-  cfg = config.sergiOME.waybar;
-in
 {
+  config,
+  lib,
+  stylix,
+  ...
+}: let
+  cfg = config.sergiOME.waybar;
+in {
   options.sergiOME.waybar = with lib; {
     enable = mkEnableOption "waybar";
   };
@@ -12,14 +15,14 @@ in
     settings = {
       bar = {
         layer = "top";
-        modules-left = ["custom/launcher" "cpu" "memory" "tray"];
-        modules-center = ["niri/workspaces"];
-        modules-right = ["backlight" "pulseaudio" "clock" "battery" "custom/power"];
+        modules-left = ["custom/logo" "disk" "cpu" "memory" "temperature"];
+        modules-center = ["clock"];
+        modules-right = ["hyprland/workspaces" "backlight" "pulseaudio" "bluetooth" "battery" "network"];
 
         "pulseaudio" = {
           tooltip = false;
           scroll-step = 5;
-          format = "{icon} {volume}%";
+          format = "{icon}  {volume}%";
           format-muted = "󰝟 ";
           format-icons = {
             default = ["" " " " "];
@@ -28,7 +31,7 @@ in
 
         "backlight" = {
           tooltip = false;
-          format = " {}%";
+          format = "󰃞 {}%";
           interval = 1;
         };
 
@@ -39,7 +42,7 @@ in
             critical = 20;
           };
           format = "{icon}  {capacity}%";
-          format-charging = "  {capacity}%";
+          format-charging = "󱐋 {capacity}%";
           format-plugged = "  {capacity}%";
           format-alt = "{time} {icon}";
           format-icons = [" " " " " " " " " "];
@@ -51,45 +54,64 @@ in
         };
 
         "clock" = {
-          format = "{:  %I:%M %p    %d/%m/%Y}";
+          interval = 1;
+          format = "   {:%I:%M:%S %p}   ";
+          tooltip = true;
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          calendar = {
+            mode = "month";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+            on-click-right = "mode";
+          };
+        };
+
+        "network" = {
+          "format" = "{ifname}";
+          "format-wifi" = "󰤨  {essid}  ";
+          "format-ethernet" = "󰈁 {ipaddr}/{cidr} ";
+          "format-disconnected" = "󰤭   ";
+          "max-length" = 50;
+        };
+
+        "bluetooth" = {
+          format-disabled = " 󰂲 ";
+          format-off = " 󰂲 ";
+          format-on = "  ";
+          format-connected = " 󰂰 ";
+        };
+
+        "disk" = {
+          "interval" = 60;
+          "format" = "󰋊 {percentage_free}% ";
+          "path" = "/";
         };
 
         "cpu" = {
-          interval = 15;
-          format = "  {}%";
+          interval = 1;
+          format = " 󰻠 {}% ";
           max-length = 10;
         };
 
         "memory" = {
-          interval = 30;
-          format = "  {}%";
+          interval = 1;
+          format = "   {}% ";
           max-length = 10;
         };
 
-# "custom/media" = {
-#   interval = 30;
-#   format = "{icon} {}";
-#   return-type = "json";
-#   max-length = 20;
-#   format-icons = {
-#     "spotify": " ";
-#     "default": " ";
-#   };
-#   escape = true;
-#   exec = "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null";
-#   on-click = "playerctl play-pause";
-# };
-
-        "custom/launcher" = {
-          format = " ";
+        "temperature" = {
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          critical-threshold = 90;
+          interval = 1;
+          format = "󰔏 {temperatureC}°C ";
+          tooltip = false;
         };
 
-        "custom/power" = {
-          format = " ";
-          on-click = "bash ~/.config/rofi/leave/leave.sh";
+        "custom/logo" = {
+          format = "      ";
         };
       };
     };
-    style = builtins.readFile ./style.css;
   };
 }

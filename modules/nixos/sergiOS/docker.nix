@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.sergiOS.docker;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.sergiOS.docker;
+in {
   options.sergiOS.docker = with lib; {
     enable = mkEnableOption "docker";
     rootless = mkOption {
@@ -20,7 +22,7 @@ in
       enable = !cfg.rootless;
     };
     users.users.${config.sergiOS.user} = lib.mkIf (!cfg.rootless) {
-      extraGroups = [ "docker" ];
+      extraGroups = ["docker"];
     };
   };
 }

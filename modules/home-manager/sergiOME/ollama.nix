@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.ollama;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.ollama;
+in {
   options.sergiOME.ollama = with lib; {
     enable = mkEnableOption "ollama";
   };

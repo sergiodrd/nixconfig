@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   imports = [
     ./hyprland
     ./waybar
@@ -15,7 +14,6 @@
     ./programming.nix
     ./ollama.nix
     ./obsidian.nix
-    ./tofi.nix
     ./niri.nix
     ./typst.nix
   ];
@@ -25,10 +23,11 @@
       type = types.str;
       default = "sergio";
     };
-    # homeDirectory = mkOption {
-    #   type = types.str;
-    #   default = "/home/${username}";
-    # };
+
+    homeDirectory = mkOption {
+      type = types.str;
+      default = "/home/sergio";
+    };
   };
 
   config.programs.home-manager.enable = true;

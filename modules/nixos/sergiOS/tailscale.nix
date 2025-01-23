@@ -1,8 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.sergiOS.tailscale;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.sergiOS.tailscale;
+in {
   options.sergiOS.tailscale = with lib; {
     enable = mkEnableOption "tailscale";
   };

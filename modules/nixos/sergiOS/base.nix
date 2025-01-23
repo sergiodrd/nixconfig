@@ -1,8 +1,12 @@
-{ config, lib, pkgs, inputs, ... }:
-let
-  cfg = config.sergiOS;
-in
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  cfg = config.sergiOS;
+in {
   options.sergiOS.base = with lib; {
     enable = mkEnableOption "base";
     uefi = mkOption {
@@ -12,8 +16,8 @@ in
   };
 
   config = lib.mkIf cfg.base.enable {
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.nixPath = [ "nixpkgs=${inputs.nixos-nixpkgs}" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.nixPath = ["nixpkgs=${inputs.nixos-nixpkgs}"];
     nixpkgs.config.allowUnfree = true;
 
     boot.loader.systemd-boot.enable = cfg.base.uefi;

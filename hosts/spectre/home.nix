@@ -1,13 +1,11 @@
-{ ... }:
-{
-  home.stateVersion = "22.11"; 
+{...}: {
+  home.stateVersion = "22.11";
 
   sergiOME = {
-    # hyprland.enable = true;
+    hyprland.enable = true;
     niri.enable = true;
     waybar.enable = true;
     swappy.enable = true;
-    tofi.enable = true;
 
     alacritty.enable = true;
     zsh.enable = true;
@@ -29,6 +27,7 @@
     browsing = {
       enable = true;
       firefox.enable = true;
+      floorp.enable = true;
     };
   };
 }

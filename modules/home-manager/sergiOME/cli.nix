@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.cli;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.cli;
+in {
   options.sergiOME.cli = with lib; {
     enable = mkEnableOption "cli";
     personalGit = {
@@ -33,6 +36,10 @@ in
         enable = true;
       };
       zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      yazi = {
         enable = true;
         enableZshIntegration = true;
       };

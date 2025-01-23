@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.typst;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.typst;
+in {
   options.sergiOME.typst = with lib; {
     enable = mkEnableOption "typst";
   };

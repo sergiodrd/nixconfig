@@ -1,8 +1,11 @@
-{ config, lib, hostname, ... }:
-let
-  cfg = config.sergiOME;
-in
 {
+  config,
+  lib,
+  hostname,
+  ...
+}: let
+  cfg = config.sergiOME;
+in {
   options.sergiOME.zsh = with lib; {
     enable = mkEnableOption "zsh";
   };

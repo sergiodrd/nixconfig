@@ -1,6 +1,5 @@
-{ ... }:
-{
-  home.stateVersion = "22.11"; 
+{...}: {
+  home.stateVersion = "22.11";
 
   sergiOME = {
     zsh.enable = true;

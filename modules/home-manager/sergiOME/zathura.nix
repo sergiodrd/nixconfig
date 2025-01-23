@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.sergiOME.zathura;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.sergiOME.zathura;
+in {
   options.sergiOME.zathura = with lib; {
     enable = mkEnableOption "zathura";
   };
