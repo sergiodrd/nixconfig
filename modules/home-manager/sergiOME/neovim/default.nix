@@ -30,6 +30,7 @@ in {
 
       autoGroups = {
         highlight_yank.clear = true;
+        blade_alias.clear = true;
       };
 
       autoCmd = import ./autocmd.nix;

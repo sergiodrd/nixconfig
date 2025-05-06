@@ -29,5 +29,11 @@
       firefox.enable = true;
       floorp.enable = true;
     };
+
+    creative = {
+      enable = true;
+      gimp.enable = true;
+      krita.enable = true;
+    };
   };
 }

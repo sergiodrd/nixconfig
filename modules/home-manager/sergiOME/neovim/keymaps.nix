@@ -13,8 +13,8 @@
 
   {
     mode = "n";
-    key = "<leader>E";
-    action = ":Explore<CR>";
+    key = "-";
+    action = ":Oil<CR>";
   }
 
   {
@@ -155,5 +155,37 @@
     key = "<c-k>";
     action = "<c-w><c-k>";
     options.desc = "move focus to the upper window";
+  }
+
+  # harpoon
+  {
+    mode = "n";
+    key = "<leader>a";
+    action.__raw = "function() require'harpoon':list():add() end";
+  }
+  {
+    mode = "n";
+    key = "<C-e>";
+    action.__raw = "function() require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) end";
+  }
+  {
+    mode = "n";
+    key = "<leader>j";
+    action.__raw = "function() require'harpoon':list():select(1) end";
+  }
+  {
+    mode = "n";
+    key = "<leader>k";
+    action.__raw = "function() require'harpoon':list():select(2) end";
+  }
+  {
+    mode = "n";
+    key = "<leader>l";
+    action.__raw = "function() require'harpoon':list():select(3) end";
+  }
+  {
+    mode = "n";
+    key = "<leader>;";
+    action.__raw = "function() require'harpoon':list():select(4) end";
   }
 ]

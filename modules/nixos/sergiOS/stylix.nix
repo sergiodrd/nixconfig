@@ -55,7 +55,7 @@ in {
       };
 
       fonts = let
-        iosevka = pkgs.nerdfonts.override {fonts = ["Iosevka"];};
+        iosevka = pkgs.nerd-fonts.iosevka;
       in {
         serif = {
           package = iosevka;

@@ -17,8 +17,12 @@
     clangd.enable = true;
     gleam.enable = true;
     ts_ls.enable = true;
-    typst_lsp.enable = true;
+    tinymist.enable = true;
     gopls.enable = true;
+    ocamllsp = {
+      enable = true;
+      package = pkgs.ocamlPackages.ocaml-lsp;
+    };
     rust_analyzer = {
       enable = true;
       installCargo = true;

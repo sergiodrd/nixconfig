@@ -19,6 +19,9 @@
     };
   };
 
+  # oil up the neovim
+  oil.enable = true;
+
   # indents
   sleuth.enable = true;
 
@@ -42,16 +45,6 @@
   harpoon = {
     enable = true;
     enableTelescope = true;
-    keymaps = {
-      addFile = "<leader>a";
-      toggleQuickMenu = "<C-e>";
-      navFile = {
-        "1" = "<leader>j";
-        "2" = "<leader>k";
-        "3" = "<leader>l";
-        "4" = "<leader>;";
-      };
-    };
   };
 
   # shoutout tj fr

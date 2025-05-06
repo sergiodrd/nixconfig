@@ -16,6 +16,7 @@
     ./obsidian.nix
     ./niri.nix
     ./typst.nix
+    ./creative.nix
   ];
 
   options.sergiOME = with lib; rec {

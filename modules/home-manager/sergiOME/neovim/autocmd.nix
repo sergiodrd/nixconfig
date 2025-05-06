@@ -11,4 +11,12 @@
       '';
     };
   }
+
+  {
+    desc = "Alias blade.php files to php files";
+    group = "blade_alias";
+    event = ["BufRead" "BufNewFile"];
+    pattern = "*.blade.php";
+    command = "setfiletype php";
+  }
 ]
