@@ -42,7 +42,7 @@
         modules =
           defaultModules
           ++ [
-            ./hosts/legion
+            ./hosts/legion/configuration.nix
           ];
       };
 
@@ -51,7 +51,7 @@
         modules =
           defaultModules
           ++ [
-            ./hosts/spectre
+            ./hosts/spectre/configuration.nix
           ];
       };
 
@@ -60,7 +60,7 @@
         modules =
           defaultModules
           ++ [
-            ./hosts/pi
+            ./hosts/pi/configuration.nix
             inputs.nixos-hardware.raspberry-pi-4
           ];
       };
@@ -70,7 +70,7 @@
         modules =
           defaultModules
           ++ [
-            ./hosts/thinkpad
+            ./hosts/thinkpad/configuration.nix
           ];
       };
     };
