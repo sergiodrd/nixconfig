@@ -13,6 +13,14 @@ in {
       type = types.bool;
       default = true;
     };
+    withNetworkManager = mkOption {
+      type = types.bool;
+      default = true;
+    };
+    withBluetooth = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.base.enable {
@@ -20,15 +28,16 @@ in {
     nix.nixPath = ["nixpkgs=${inputs.nixos-nixpkgs}"];
     nixpkgs.config.allowUnfree = true;
 
+    boot.loader.grub.enable = !cfg.base.uefi;
     boot.loader.systemd-boot.enable = cfg.base.uefi;
     boot.loader.efi.canTouchEfiVariables = cfg.base.uefi;
 
-    networking.networkmanager.enable = true;
+    networking.networkmanager.enable = cfg.withNetworkManager;
     networking.hostName = cfg.hostname;
 
     systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth.enable = cfg.withBluetooth;
 
     time.timeZone = "America/Puerto_Rico";
     i18n.defaultLocale = "en_US.UTF-8";
@@ -59,7 +68,6 @@ in {
       dnsutils
       pciutils
       file
-      lf
       intel-ocl
       inotify-tools
     ];
