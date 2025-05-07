@@ -73,6 +73,15 @@
             ./hosts/thinkpad/configuration.nix
           ];
       };
+
+      racknerd0 = nixos-nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules =
+            defaultModules
+            ++ [
+              ./hosts/racknerd0/configuration.nix
+            ];
+      };
     };
   };
 }
