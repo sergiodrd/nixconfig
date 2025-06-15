@@ -8,6 +8,7 @@
     ./tailscale.nix
     ./virtualbox.nix
     ./stylix.nix
+    ./caddy.nix
   ];
 
   options.sergiOS = with lib; {

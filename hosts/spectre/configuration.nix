@@ -15,7 +15,7 @@
     };
     graphical = {
       enable = true;
-      niri = true;
+      niri = false;
       hyprland = true;
     };
     home-manager = {
@@ -32,7 +32,7 @@
     tailscale.enable = true;
   };
 
-  services.openvpn.servers.cdcc = {config = ''config /root/nixos/openvpn/CDCC/CCOM-client.conf '';};
+  services.desktopManager.cosmic.enable = true;
 
   system.stateVersion = "23.05";
 }

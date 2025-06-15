@@ -9,9 +9,16 @@
 in {
   options.sergiOS.base = with lib; {
     enable = mkEnableOption "base";
-    uefi = mkOption {
-      type = types.bool;
-      default = true;
+    bios = mkOption {
+      type = types.submodule {
+        options = {
+          enable = mkEnableOption "bios";
+          grubDevice = mkOption {
+            type = types.string;
+          };
+        };
+      };
+      default = {};
     };
     withNetworkManager = mkOption {
       type = types.bool;
@@ -24,20 +31,32 @@ in {
   };
 
   config = lib.mkIf cfg.base.enable {
+    assertions = [
+      {
+        assertion = !(cfg.base.bios.enable) || cfg.base.bios.grubDevice != "";
+        message = "You must set 'bios.grubDevice' if 'bios.enable' is true.";
+      }
+    ];
+
     nix.settings.experimental-features = ["nix-command" "flakes"];
     nix.nixPath = ["nixpkgs=${inputs.nixos-nixpkgs}"];
     nixpkgs.config.allowUnfree = true;
 
-    boot.loader.grub.enable = !cfg.base.uefi;
-    boot.loader.systemd-boot.enable = cfg.base.uefi;
-    boot.loader.efi.canTouchEfiVariables = cfg.base.uefi;
+    boot.loader.grub = lib.mkIf cfg.base.bios.enable {
+      enable = true;
+      device = cfg.base.bios.grubDevice;
+    };
 
-    networking.networkmanager.enable = cfg.withNetworkManager;
+    boot.loader.systemd-boot.enable = !cfg.base.bios.enable;
+    boot.loader.efi.canTouchEfiVariables = !cfg.base.bios.enable;
+
+    networking.networkmanager.enable = cfg.base.withNetworkManager;
+    networking.firewall.checkReversePath = "loose";
     networking.hostName = cfg.hostname;
 
     systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
-    hardware.bluetooth.enable = cfg.withBluetooth;
+    hardware.bluetooth.enable = cfg.base.withBluetooth;
 
     time.timeZone = "America/Puerto_Rico";
     i18n.defaultLocale = "en_US.UTF-8";

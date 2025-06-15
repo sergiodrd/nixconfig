@@ -18,6 +18,9 @@
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixos-nixpkgs";
+
+    caddy-patched.url = "github:sergiodrd/nixos-caddy-patched/main";
+    caddy-patched.inputs.nixpkgs.follows = "nixos-nixpkgs";
   };
 
   outputs = {

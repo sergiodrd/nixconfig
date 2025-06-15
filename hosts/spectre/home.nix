@@ -3,7 +3,7 @@
 
   sergiOME = {
     hyprland.enable = true;
-    niri.enable = true;
+    niri.enable = false;
     waybar.enable = true;
     swappy.enable = true;
 

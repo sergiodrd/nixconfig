@@ -44,6 +44,8 @@ in {
       };
     };
 
+    nix.settings.trusted-users = ["${cfg.user}"];
+
     programs = {
       neovim = {
         enable = true;

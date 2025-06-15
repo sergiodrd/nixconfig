@@ -11,6 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.fuzzel.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
