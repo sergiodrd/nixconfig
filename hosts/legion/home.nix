@@ -18,8 +18,7 @@
 
     browsing = {
       enable = true;
-      firefox.enable = true;
-      qutebrowser.enable = true;
+      floorp.enable = true;
     };
   };
 }

@@ -10,7 +10,10 @@
 
     base.enable = true;
     graphical.enable = true;
-    nvidia.enable = true;
+    stylix = {
+      enable = true;
+      rice = "gruvbox";
+    };
     home-manager = {
       enable = true;
       home = ./home.nix;

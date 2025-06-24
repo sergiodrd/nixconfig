@@ -5,7 +5,7 @@
   dressing.enable = true;
   indent-blankline.enable = true;
   nvim-autopairs.enable = true;
-  nvim-colorizer.enable = true;
+  colorizer.enable = true;
   notify.enable = true;
   noice.enable = true;
   todo-comments = {
