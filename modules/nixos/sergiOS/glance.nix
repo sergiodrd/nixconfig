@@ -18,57 +18,35 @@ in {
           host = "0.0.0.0";
           port = 8080;
         };
+
         pages = [
           {
             name = "Home";
-            # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
-            # hide-desktop-navigation = true;
             columns = [
               {
                 size = "small";
                 widgets = [
                   {
-                    type = "calendar";
-                    first-day-of-week = "monday";
+                    type = "command";
+                    command = "uptime && echo && df -h";
+                    interval = "5m";
+                    title = "System Status";
                   }
 
                   {
-                    type = "rss";
-                    limit = 10;
-                    collapse-after = 3;
-                    cache = "12h";
-                    feeds = [
-                      {
-                        url = "https://selfh.st/rss/";
-                        title = "selfh.st";
-                        limit = 4;
-                      }
-                      {
-                        url = "https://ciechanow.ski/atom.xml";
-                      }
-                      {
-                        url = "https://www.joshwcomeau.com/rss.xml";
-                        title = "Josh Comeau";
-                      }
-                      {
-                        url = "https://samwho.dev/rss.xml";
-                      }
-                      {
-                        url = "https://ishadeed.com/feed.xml";
-                        title = "Ahmad Shadeed";
-                      }
-                    ];
+                    type = "command";
+                    command = "nix flake metadata";
+                    interval = "1h";
+                    title = "Flake Metadata";
                   }
 
                   {
-                    type = "twitch-channels";
-                    channels = [
-                      "theprimeagen"
-                      "j_blow"
-                      "piratesoftware"
-                      "cohhcarnage"
-                      "christitustech"
-                      "EJ_SA"
+                    type = "releases";
+                    cache = "1d";
+                    repositories = [
+                      "NixOS/nixpkgs"
+                      "gleam-lang/gleam"
+                      "openai/openai-cookbook"
                     ];
                   }
                 ];
@@ -80,34 +58,51 @@ in {
                   {
                     type = "group";
                     widgets = [
-                      { type = "hacker-news"; }
-                      { type = "lobsters"; }
-                    ];
-                  }
-
-                  {
-                    type = "videos";
-                    channels = [
-                      "UCXuqSBlHAE6Xw-yeJA0Tunw" # Linus Tech Tips
-                      "UCR-DXc1voovS8nhAvccRZhg" # Jeff Geerling
-                      "UCsBjURrPoezykLs9EqgamOA" # Fireship
-                      "UCBJycsmduvYEL83R_U4JriQ" # Marques Brownlee
-                      "UCHnyfMqiRRG1u-2MsSQLbXA" # Veritasium
-                    ];
-                  }
-
-                  {
-                    type = "group";
-                    widgets = [
                       {
-                        type = "reddit";
-                        subreddit = "technology";
-                        show-thumbnails = true;
+                        type = "rss";
+                        title = "Tech / Dev Feeds";
+                        limit = 10;
+                        collapse-after = 3;
+                        cache = "6h";
+                        feeds = [
+                          { url = "https://www.joshwcomeau.com/rss.xml"; title = "Josh Comeau"; }
+                          { url = "https://samwho.dev/rss.xml"; }
+                          { url = "https://overreacted.io/rss.xml"; title = "Overreacted"; }
+                          { url = "https://martinfowler.com/feed.atom"; title = "Martin Fowler"; }
+                          { url = "https://blog.burntsushi.net/index.xml"; title = "Burnt Sushi"; }
+                        ];
                       }
+
                       {
-                        type = "reddit";
-                        subreddit = "selfhosted";
-                        show-thumbnails = true;
+                        type = "rss";
+                        title = "PL / Theory / HoTT";
+                        limit = 10;
+                        collapse-after = 3;
+                        cache = "6h";
+                        feeds = [
+                          { url = "https://ciechanow.ski/atom.xml"; }
+                          { url = "https://existentialtype.wordpress.com/feed/"; title = "Existential Type"; }
+                          { url = "https://ncatlab.org/nlab/rss"; title = "nLab"; }
+                          { url = "https://golem.ph.utexas.edu/category/atom10.xml"; title = "The n-Category Café"; }
+                        ];
+                      }
+
+                      {
+                        type = "videos";
+                        channels = [
+                          "UCm9vP4a6yN6i3x9klq7h_5A" # Dungeon Dudes
+                          "UCkVdb9Yr8fc05_VbAVfskCA" # Web DM
+                          "UCRp6tTdb3mXLsTgXlzVz68w" # Taking20
+                        ];
+                        title = "TTRPG / DM Theory";
+                      }
+
+                      {
+                        type = "group";
+                        widgets = [
+                          { type = "hacker-news"; }
+                          { type = "lobsters"; }
+                        ];
                       }
                     ];
                   }
@@ -118,64 +113,32 @@ in {
                 size = "small";
                 widgets = [
                   {
-                    type = "weather";
-                    location = "London, United Kingdom";
-                    units = "metric"; # alternatively "imperial"
-                    hour-format = "12h"; # alternatively "24h"
-                    # hide-location = true;
+                    type = "reddit";
+                    subreddit = "behindthescreen";
+                    title = "DM Advice";
+                    show-thumbnails = false;
                   }
 
                   {
-                    type = "markets";
-                    markets = [
-                      { symbol = "SPY"; name = "S&P 500"; }
-                      { symbol = "BTC-USD"; name = "Bitcoin"; }
-                      { symbol = "NVDA"; name = "NVIDIA"; }
-                      { symbol = "AAPL"; name = "Apple"; }
-                      { symbol = "MSFT"; name = "Microsoft"; }
-                    ];
+                    type = "reddit";
+                    subreddit = "selfhosted";
+                    show-thumbnails = true;
                   }
 
                   {
-                    type = "releases";
-                    cache = "1d";
-                    # token = "...";
-                    repositories = [
-                      "glanceapp/glance"
-                      "go-gitea/gitea"
-                      "immich-app/immich"
-                      "syncthing/syncthing"
+                    type = "rss";
+                    title = "Campaign Blogs";
+                    limit = 5;
+                    cache = "12h";
+                    feeds = [
+                      { url = "https://thealexandrian.net/feed"; title = "The Alexandrian"; }
+                      { url = "https://slyflourish.com/feeds/main.rss"; title = "Sly Flourish"; }
                     ];
                   }
                 ];
               }
             ];
           }
-
-          # Add more pages here:
-          # {
-          #   name = "Your page name";
-          #   columns = [
-          #     {
-          #       size = "small";
-          #       widgets = [
-          #         # Add widgets here
-          #       ];
-          #     }
-          #     {
-          #       size = "full";
-          #       widgets = [
-          #         # Add widgets here
-          #       ];
-          #     }
-          #     {
-          #       size = "small";
-          #       widgets = [
-          #         # Add widgets here
-          #       ];
-          #     }
-          #   ];
-          # }
         ];
       };
     };
