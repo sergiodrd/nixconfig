@@ -19,8 +19,12 @@
       home = ./home.nix;
     };
 
+    glance.enable = true;
+
     tailscale.enable = true;
   };
+
+  services.logind.lidSwitch = "ignore";
 
   system.stateVersion = "23.05";
 }

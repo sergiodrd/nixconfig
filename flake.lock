@@ -67,27 +67,6 @@
         "type": "github"
       }
     },
-    "caddy-patched": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos-nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1749247750,
-        "narHash": "sha256-btCumfpnZvzyXm32ewn8+Ezqc8iuu1iNn5Pv/F3jxiI=",
-        "owner": "sergiodrd",
-        "repo": "nixos-caddy-patched",
-        "rev": "f59ce1106630fcd799fa1cac147b3903cd1b74ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sergiodrd",
-        "ref": "main",
-        "repo": "nixos-caddy-patched",
-        "type": "github"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -525,7 +504,6 @@
     },
     "root": {
       "inputs": {
-        "caddy-patched": "caddy-patched",
         "home-manager": "home-manager",
         "niri": "niri",
         "nixos-hardware": "nixos-hardware",

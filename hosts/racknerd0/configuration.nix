@@ -17,6 +17,11 @@
       withBluetooth = false;
     };
 
+    home-manager = {
+      enable = true;
+      home = ./home.nix;
+    };
+
     caddy.enable = true;
     tailscale.enable = true;
   };
