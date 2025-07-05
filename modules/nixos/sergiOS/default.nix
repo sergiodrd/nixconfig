@@ -9,6 +9,7 @@
     ./virtualbox.nix
     ./stylix.nix
     ./caddy.nix
+    ./glance.nix
   ];
 
   options.sergiOS = with lib; {
