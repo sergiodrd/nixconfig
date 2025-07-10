@@ -1,0 +1,7 @@
+keys:
+  - &spectre age15rqdk2gfheq9mveuzr3hz3nzx397lh3html9e0ah4uuwkg9mg4kq3tyu6h
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *spectre

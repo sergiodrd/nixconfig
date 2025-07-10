@@ -9,6 +9,7 @@
     hostname = "spectre";
 
     base.enable = true;
+    sops.enable = true;
     stylix = {
       enable = true;
       rice = "gruvbox";

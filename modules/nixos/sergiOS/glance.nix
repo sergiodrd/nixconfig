@@ -11,52 +11,49 @@ in {
   };
 
   config = lib.mkIf cfg.glance.enable {
-    services.glance = {
-      enable = true;
-      settings = {
-        server = {
-          host = "0.0.0.0";
-          port = 8080;
+    containers.glance = {
+      autoStart = true;
+
+      config = { ... }: {
+        fileSystems."/etc/glance/tailscale-authkey" = {
+          device = "/run/secrets/container_tailscale_keys/glance";
+          options = [ "bind" "ro" ];
         };
 
-        pages = [
-          {
-            name = "Home";
-            columns = [
+        services.tailscale = {
+          enable = true;
+          authKeyFile = "/etc/glance/tailscale-authkey";
+        };
+
+        services.glance = {
+          enable = true;
+          settings = {
+            server = {
+              host = "0.0.0.0";
+              port = 8080;
+            };
+
+            pages = [
               {
-                size = "small";
-                widgets = [
+                name = "Home";
+                columns = [
                   {
-                    type = "command";
-                    command = "uptime && echo && df -h";
-                    interval = "5m";
-                    title = "System Status";
-                  }
-
-                  {
-                    type = "command";
-                    command = "nix flake metadata";
-                    interval = "1h";
-                    title = "Flake Metadata";
-                  }
-
-                  {
-                    type = "releases";
-                    cache = "1d";
-                    repositories = [
-                      "NixOS/nixpkgs"
-                      "gleam-lang/gleam"
-                      "openai/openai-cookbook"
+                    size = "small";
+                    widgets = [
+                      {
+                        type = "releases";
+                        cache = "1d";
+                        repositories = [
+                          "NixOS/nixpkgs"
+                          "gleam-lang/gleam"
+                          "openai/openai-cookbook"
+                        ];
+                      }
                     ];
                   }
-                ];
-              }
 
-              {
-                size = "full";
-                widgets = [
                   {
-                    type = "group";
+                    size = "full";
                     widgets = [
                       {
                         type = "rss";
@@ -97,49 +94,44 @@ in {
                         title = "TTRPG / DM Theory";
                       }
 
+                      { type = "hacker-news"; }
+                      { type = "lobsters"; }
+                    ];
+                  }
+
+                  {
+                    size = "small";
+                    widgets = [
                       {
-                        type = "group";
-                        widgets = [
-                          { type = "hacker-news"; }
-                          { type = "lobsters"; }
+                        type = "reddit";
+                        subreddit = "behindthescreen";
+                        title = "DM Advice";
+                        show-thumbnails = false;
+                      }
+
+                      {
+                        type = "reddit";
+                        subreddit = "selfhosted";
+                        show-thumbnails = true;
+                      }
+
+                      {
+                        type = "rss";
+                        title = "Campaign Blogs";
+                        limit = 5;
+                        cache = "12h";
+                        feeds = [
+                          { url = "https://thealexandrian.net/feed"; title = "The Alexandrian"; }
+                          { url = "https://slyflourish.com/feeds/main.rss"; title = "Sly Flourish"; }
                         ];
                       }
                     ];
                   }
                 ];
               }
-
-              {
-                size = "small";
-                widgets = [
-                  {
-                    type = "reddit";
-                    subreddit = "behindthescreen";
-                    title = "DM Advice";
-                    show-thumbnails = false;
-                  }
-
-                  {
-                    type = "reddit";
-                    subreddit = "selfhosted";
-                    show-thumbnails = true;
-                  }
-
-                  {
-                    type = "rss";
-                    title = "Campaign Blogs";
-                    limit = 5;
-                    cache = "12h";
-                    feeds = [
-                      { url = "https://thealexandrian.net/feed"; title = "The Alexandrian"; }
-                      { url = "https://slyflourish.com/feeds/main.rss"; title = "Sly Flourish"; }
-                    ];
-                  }
-                ];
-              }
             ];
-          }
-        ];
+          };
+        };
       };
     };
   };

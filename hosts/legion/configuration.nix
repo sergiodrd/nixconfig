@@ -9,6 +9,7 @@
     hostname = "legion";
 
     base.enable = true;
+    sops.enable = true;
     graphical.enable = true;
     stylix = {
       enable = true;

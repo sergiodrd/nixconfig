@@ -10,6 +10,7 @@
     ./stylix.nix
     ./caddy.nix
     ./glance.nix
+    ./sops.nix
   ];
 
   options.sergiOS = with lib; {
