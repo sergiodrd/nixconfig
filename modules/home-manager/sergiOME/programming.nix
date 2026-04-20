@@ -26,6 +26,8 @@ in {
       deno
       hyprland
       aoc-cli
+      claude-code
+      opencode
     ];
   };
 }

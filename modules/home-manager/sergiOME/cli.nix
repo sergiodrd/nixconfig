@@ -52,6 +52,8 @@ in {
       eza
       neofetch
       nix-tree
+      discord
+      discordo
       (writeShellScriptBin "definitely_unique" ''
         ${cowsay}/bin/cowsay hello
       '')

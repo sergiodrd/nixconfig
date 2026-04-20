@@ -78,6 +78,8 @@ in {
     #   # here, NOT in environment.systemPackages
     # ];
 
+    programs.steam.enable = true;
+
     environment.systemPackages = with pkgs; [
       git
       libgccjit
@@ -89,6 +91,7 @@ in {
       file
       intel-ocl
       inotify-tools
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 }

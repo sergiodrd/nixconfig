@@ -72,10 +72,6 @@ in {
           pseudotile = true;
           preserve_split = true;
         };
-
-        gestures = {
-          workspace_swipe = true;
-        };
       };
 
       extraConfig = ''
@@ -85,7 +81,7 @@ in {
         bind = $mainMod, Q, killactive,
         bind = $mainMod, M, exit,
         bind = $mainMod, N, exec, dolphin
-        bind = $mainMod, W, exec, floorp
+        bind = $mainMod, W, exec, zen
         bind = $mainMod SHIFT, V, togglefloating,
         bind = $mainMod, SPACE, exec, fuzzel
         bind = $mainMod, P, pseudo, # dwindle
@@ -154,7 +150,7 @@ in {
       slurp
       swappy
       swww
-      rofi-wayland
+      rofi
     ];
   };
 }
