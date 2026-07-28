@@ -34,17 +34,9 @@
 
         image =
           if cfg.rice == "tokyo_night"
-          then
-            pkgs.fetchurl {
-              url = "https://github.com/zhichaoh/catppuccin-wallpapers/blob/main/landscapes/Cloudsnight.jpg?raw=true";
-              hash = "sha256-jBv9iKBVQbgd1cmv+ubiJQH7qydRJZTShmwzEiJJcDA=";
-            }
+          then ../../wallpapers/Cloudsnight.jpg
           else if cfg.rice == "gruvbox"
-          then
-            pkgs.fetchurl {
-              url = "https://github.com/AngelJumbo/gruvbox-wallpapers/blob/main/wallpapers/anime/ghibli-japanese-walled-garden.png?raw=true";
-              hash = "sha256-10Lv25V0RG0mnw/O90DeVchCNWJbdktUADtuI+enEwM=";
-            }
+          then ../../wallpapers/classroom.jpg
           else "";
 
         cursor = with pkgs; {
