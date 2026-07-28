@@ -1,0 +1,3 @@
+{ ... }: {
+  flake.nixosModules.hardwareSpectre = ./hardware-configuration.nix;
+}

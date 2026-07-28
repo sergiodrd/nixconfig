@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.nixosConfigurations.spectre = inputs.nixos-nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.framework = inputs.nixos-nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
       self.nixosModules.base
@@ -10,11 +10,12 @@
       self.nixosModules.tailscale
       self.nixosModules.docker
       self.nixosModules.virtualbox
+      inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series1
       inputs.home-manager.nixosModules.home-manager
 
       ({ pkgs, lib, config, ... }: {
-        sergiOS.hostname = "spectre";
-        system.stateVersion = "23.05";
+        sergiOS.hostname = "framework";
+        system.stateVersion = "25.05";
 
         sergiOS.graphical.hyprland = true;
         sergiOS.stylix.rice = "gruvbox";
@@ -27,7 +28,7 @@
           useUserPackages = lib.mkDefault true;
           extraSpecialArgs = {
             inherit inputs;
-            hostname = "spectre";
+            hostname = "framework";
             stylix = config.sergiOS.stylix;
           };
           sharedModules = with self.homeManagerModules; [

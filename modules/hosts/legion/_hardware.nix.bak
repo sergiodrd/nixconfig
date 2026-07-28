@@ -1,0 +1,3 @@
+{ ... }: {
+  flake.nixosModules.hardwareLegion = ./hardware-configuration.nix;
+}
