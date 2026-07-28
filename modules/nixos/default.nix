@@ -1,3 +1,0 @@
-{
-  sergiOS = import ./sergiOS;
-}

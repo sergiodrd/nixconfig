@@ -1,3 +1,0 @@
-{
-  sergiOME = import ./sergiOME;
-}
